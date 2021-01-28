@@ -6,10 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <EmbeddedResource Include="..\Resources\Textures\*.png" Link="Resources\Textures\%(Filename).png"/>
+	  <EmbeddedResource Include="..\Resources\Textures\*.png" Link="Resources\Textures\%(Filename).png" />
 	  <None Include="..\Resources\Textures\*.aseprite" Link="Resources\Textures\%(Filename).aseprite">
 		  <DependentUpon>Resources\Textures\%(Filename).png</DependentUpon>
 	  </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vildmark\Vildmark.Core\Vildmark.Core.csproj" />
+    <ProjectReference Include="..\Vildmark\Vildmark.Graphics.Fonts\Vildmark.Graphics.Fonts.csproj" />
+    <ProjectReference Include="..\Vildmark\Vildmark.Graphics\Vildmark.Graphics.csproj" />
+    <ProjectReference Include="..\Vildmark\Vildmark.Maths\Vildmark.Maths.csproj" />
+    <ProjectReference Include="..\Vildmark\Vildmark.Windowing\Vildmark.Windowing.csproj" />
   </ItemGroup>
 
 </Project>

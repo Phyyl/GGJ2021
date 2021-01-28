@@ -6,6 +6,7 @@ namespace GGJ2021
     {
         static void Main(string[] args)
         {
+            new GGJ2021Game().Run();
         }
     }
 }
