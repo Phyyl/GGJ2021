@@ -14,11 +14,11 @@ namespace GGJ2021
 {
     public class GGJ2021Game : IWindowHandler
     {
+        public const int Scale = 4;
+
         private IWindow window;
         private RenderContext2D renderContext;
-        private GLTexture2D texture;
-        private TextureAtlas textureAtlas;
-        private RectangleShape rectangle;
+        private KeyItemEntity keyItemEntity;
 
         public GGJ2021Game()
         {
@@ -27,15 +27,16 @@ namespace GGJ2021
 
         public void Load()
         {
-            renderContext = new RenderContext2D(window.Width, window.Height)
+            renderContext = new RenderContext2D()
             {
                 ClearColor = Color4.Black
             };
 
-            texture = ResourceLoader.LoadEmbedded<GLTexture2D>("items.png");
-            textureAtlas = new TextureAtlas(texture, 8, 8);
+            renderContext.Camera.Transform.Scale = Scale;
 
-            rectangle = new RectangleShape(Vector2.Zero, texture.Size, textureAtlas[0,0]);
+            Textures.Initialize();
+
+            keyItemEntity = new KeyItemEntity();
         }
 
         public void Resize(int width, int height)
@@ -55,7 +56,7 @@ namespace GGJ2021
         {
             renderContext.Clear();
 
-            renderContext.Render(rectangle);
+            keyItemEntity.Render(renderContext);
         }
 
         public void Run()
