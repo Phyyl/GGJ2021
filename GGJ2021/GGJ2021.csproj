@@ -1,8 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+	  <EmbeddedResource Include="..\Resources\Textures\*.png" Link="Resources\Textures\%(Filename).png"/>
+	  <None Include="..\Resources\Textures\*.aseprite" Link="Resources\Textures\%(Filename).aseprite">
+		  <DependentUpon>Resources\Textures\%(Filename).png</DependentUpon>
+	  </None>
+  </ItemGroup>
 
 </Project>
