@@ -13,11 +13,14 @@ namespace GGJ2021
 {
     public abstract class ItemEntity : Entity
     {
+        private readonly Texture2D texture;
         private RectangleShape rectangle;
 
         protected ItemEntity(Texture2D texture)
         {
-            rectangle = new RectangleShape(texture.Width, texture.Height, texture);
+            this.texture = texture;
+
+            rectangle = new RectangleShape(texture.Width, texture.Height);
 
             Transform.OriginX = texture.Width / 2;
             Transform.OriginY = texture.Height;
@@ -25,7 +28,7 @@ namespace GGJ2021
 
         public override void Render(RenderContext2D renderContext)
         {
-            renderContext.Render(rectangle, Transform);
+            renderContext.Render(rectangle.Mesh, texture, Transform);
         }
     }
 }

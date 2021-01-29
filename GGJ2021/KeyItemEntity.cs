@@ -10,7 +10,7 @@ namespace GGJ2021
     public class KeyItemEntity : ItemEntity
     {
         public KeyItemEntity()
-            : base(Textures.ItemsAtlas[0, 0])
+            : base(Textures.Items[0, 0])
         {
         }
     }

@@ -1,6 +1,7 @@
 ﻿using OpenTK.Mathematics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace GGJ2021
         private IWindow window;
         private RenderContext2D renderContext;
         private KeyItemEntity keyItemEntity;
+        private Map map;
 
         public GGJ2021Game()
         {
@@ -27,7 +29,7 @@ namespace GGJ2021
 
         public void Load()
         {
-            renderContext = new RenderContext2D()
+            renderContext = new BatchedRenderContext2D()
             {
                 ClearColor = Color4.Black
             };
@@ -35,8 +37,22 @@ namespace GGJ2021
             renderContext.Camera.Transform.Scale = Scale;
 
             Textures.Initialize();
+            MapTileType.Initialize();
 
             keyItemEntity = new KeyItemEntity();
+            keyItemEntity.Transform.Position = new Vector3(32, 32, 0);
+
+            map = new Map(50, 20);
+
+            for (int y = 0; y < map.Height; y++)
+            {
+                for (int x = 0; x < map.Width; x++)
+                {
+                    map.BackgroundLayer[x, y] = MapTileType.Grass;
+                }
+            }
+
+            map.AddEntity(keyItemEntity);
         }
 
         public void Resize(int width, int height)
@@ -50,13 +66,19 @@ namespace GGJ2021
 
         public void Update(float delta)
         {
+
         }
 
         public void Render(float delta)
         {
-            renderContext.Clear();
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-            keyItemEntity.Render(renderContext);
+            using (renderContext.Begin())
+            {
+                map.Render(renderContext);
+            }
+
+            Console.WriteLine(stopwatch.ElapsedTicks / 10000f + "ms");
         }
 
         public void Run()
