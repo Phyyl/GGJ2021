@@ -18,7 +18,7 @@ namespace GGJ2021
             texture = Textures.Chars[0, 3];
             rectangle = new RectangleShape(texture.Width, texture.Height);
 
-            MovementSpeed = 5;
+            MovementSpeed = 16;
         }
 
         public override void Render(RenderContext2D renderContext)
