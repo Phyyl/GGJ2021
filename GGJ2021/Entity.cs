@@ -12,6 +12,8 @@ namespace GGJ2021
     {
         private Transform transform;
 
+        public float MovementSpeed { get; init; }
+
         public ref Transform Transform => ref transform;
 
         public virtual void Update(float delta) { }

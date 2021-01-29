@@ -20,8 +20,8 @@ namespace GGJ2021
 
         private IWindow window;
         private RenderContext2D renderContext;
-        private KeyItemEntity keyItemEntity;
         private Map map;
+        private EntityController controller;
 
         public GGJ2021Game()
         {
@@ -30,6 +30,9 @@ namespace GGJ2021
 
         public void Load()
         {
+            Textures.Initialize();
+            MapTileType.Initialize();
+
             renderContext = new BatchedRenderContext2D()
             {
                 ClearColor = Color4.Black
@@ -37,11 +40,11 @@ namespace GGJ2021
 
             renderContext.Camera.Transform.Scale = Scale;
 
-            Textures.Initialize();
-            MapTileType.Initialize();
-
-            keyItemEntity = new KeyItemEntity();
+            KeyItemEntity keyItemEntity = new KeyItemEntity();
             keyItemEntity.Transform.Position = new Vector3(32, 32, 0);
+
+            PlayerEntity playerEntity = new PlayerEntity();
+            controller = new EntityController(window, playerEntity);
 
             map = new Map(50, 20);
 
@@ -53,7 +56,7 @@ namespace GGJ2021
                 }
             }
 
-            map.AddEntity(keyItemEntity);
+            map.AddEntities(keyItemEntity, playerEntity);
         }
 
         public void Resize(int width, int height)
@@ -67,6 +70,8 @@ namespace GGJ2021
 
         public void Update(float delta)
         {
+            controller.Update(delta);
+
             map.Update(delta);
         }
 

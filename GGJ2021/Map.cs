@@ -30,16 +30,19 @@ namespace GGJ2021
             ForegroundLayer = new MapLayer(this);
         }
 
-        public void AddEntity(Entity entity)
+        public void AddEntities(params Entity[] entities)
         {
-            if (entity is null)
+            foreach (var entity in entities)
             {
-                return;
-            }
+                if (entity is null)
+                {
+                    continue;
+                }
 
-            if (!entities.Contains(entity))
-            {
-                entities.Add(entity);
+                if (!this.entities.Contains(entity))
+                {
+                    this.entities.Add(entity);
+                }
             }
         }
 
