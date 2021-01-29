@@ -45,7 +45,10 @@ namespace GGJ2021
 
         public void Update(float delta)
         {
-
+            foreach (var entity in entities)
+            {
+                entity.Update(delta);
+            }
         }
 
         public void Render(RenderContext2D renderContext)

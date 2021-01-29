@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vildmark;
 using Vildmark.Graphics;
 using Vildmark.Graphics.Models;
 using Vildmark.Graphics.Rendering;
@@ -75,7 +76,7 @@ namespace GGJ2021
                         continue;
                     }
 
-                    renderContext.Render(rectangle.Mesh, tile.Type.Material, new Transform { Position = new Vector3(position) });
+                    renderContext.Render(rectangle.Mesh, tile.Type.Material, new Vector3(position));
                 }
             }
         }

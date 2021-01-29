@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vildmark;
 using Vildmark.Graphics.GLObjects;
 using Vildmark.Graphics.Rendering;
 using Vildmark.Graphics.Shapes;
@@ -66,19 +67,15 @@ namespace GGJ2021
 
         public void Update(float delta)
         {
-
+            map.Update(delta);
         }
 
         public void Render(float delta)
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
             using (renderContext.Begin())
             {
                 map.Render(renderContext);
             }
-
-            Console.WriteLine(stopwatch.ElapsedTicks / 10000f + "ms");
         }
 
         public void Run()
